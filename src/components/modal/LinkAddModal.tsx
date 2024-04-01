@@ -1,7 +1,7 @@
 import { MouseEvent, useState } from 'react';
-import { classNames, cond } from '../../utils/style';
-import checkImg from '../../assets/check.svg';
-import style from '../../styles/modal/LinkAddModal.module.css';
+import { classNames, cond } from '@/utils/style';
+import checkImg from '@public/check.svg';
+import style from '@/styles/modal/LinkAddModal.module.css';
 import { modalDataProp } from './types/modal.type';
 
 interface linkAddModalProp {

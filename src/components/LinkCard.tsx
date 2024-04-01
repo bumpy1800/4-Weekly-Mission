@@ -1,10 +1,12 @@
 import { useState, useEffect, MouseEvent } from 'react';
-import { dateParse, diffDate } from '../utils/date';
-import noImg from '../assets/no-image-link.png';
-import starDefault from '../assets/star-Default.svg';
-import kebabImg from '../assets/kebab.svg';
-import style from '../styles/LinkCard.module.css';
+import { dateParse, diffDate } from '@/utils/date';
+import noImg from '@public/no-image-link.png';
+import starDefault from '@public/star-Default.svg';
+import kebabImg from '@public/kebab.svg';
+import style from '@/styles/LinkCard.module.css';
 import { folderList } from '@/types/folderDataType.type';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface dataProp {
   title: string;
@@ -26,6 +28,11 @@ function LinkCard({ data, openModal }: linkCard) {
     setPopOver((prevData) => !prevData);
   };
 
+  const noHttpProtocol = ((data: dataProp) => {
+    let src = data?.imageSource || data?.image_source;
+    data.imageSource = src.startsWith('//') ? `https:${src}` : src;
+  })(data);
+
   useEffect(() => {
     setPopOver(false);
     document.addEventListener('click', () => {
@@ -41,13 +48,18 @@ function LinkCard({ data, openModal }: linkCard) {
     <>
       <div className={style.linkGridItem}>
         <div className={style.itemImg}>
-          <img src={data?.imageSource || data?.image_source ? data?.imageSource || data?.image_source : noImg} alt="no-img" />
+          <Image
+            width={150}
+            height={150}
+            src={data?.imageSource || data?.image_source ? data?.imageSource || data?.image_source : noImg}
+            alt="no-img"
+          />
         </div>
         <div className={style.itemInfo}>
           <div className={style.flexBox}>
             <div className={style.dateDiff}>{diffDate(dateParse(data?.createdAt || data?.created_at))}</div>
             <div className={style.kebabBox} onClick={handleKebabClick}>
-              <img src={kebabImg} alt="kebab" />
+              <Image width={20} height={20} src={kebabImg} alt="kebab" />
               {popOver && (
                 <div className={style.popOver}>
                   <ul>
@@ -62,14 +74,14 @@ function LinkCard({ data, openModal }: linkCard) {
               )}
             </div>
           </div>
-          <a href={data?.url} target="_blank" rel="noreferrer">
+          <Link href={data?.url} target="_blank" rel="noreferrer">
             <div className={style.itemContext}>{data?.title}</div>
-          </a>
+          </Link>
           <div className={style.itemDate}>{dateParse(data?.createdAt || data?.created_at)}</div>
         </div>
 
         {/* svg조작으로 색상변경할 예정 */}
-        <img className={style.starBtn} src={starDefault} alt="star" />
+        <Image width={30} height={30} className={style.starBtn} src={starDefault} alt="star" />
       </div>
     </>
   );

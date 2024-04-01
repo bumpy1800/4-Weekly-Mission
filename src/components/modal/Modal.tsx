@@ -4,9 +4,10 @@ import EditModal from './EditModal';
 import FolderAddModal from './FolderAddModal';
 import LinkAddModal from './LinkAddModal';
 import ShareModal from './ShareModal';
-import modalClose from '../../assets/modalClose.svg';
-import style from '../../styles/modal/Modal.module.css';
+import modalClose from '@public/modalClose.svg';
+import style from '@/styles/modal/Modal.module.css';
 import { ReactElement } from 'react';
+import Image from 'next/image';
 
 interface modalProp {
   type: string;
@@ -43,7 +44,7 @@ function Modal({ type, onClose, data }: modalProp) {
     <>
       <div className={style.modalWrap}>
         <div className={style.modalHeader}>
-          <img src={modalClose} alt="close" onClick={onClose} />
+          <Image width={20} height={20} src={modalClose} alt="close" onClick={onClose} />
         </div>
         <div className={style.modalContent} onClick={(e) => e.stopPropagation()}>
           {modalComponent}

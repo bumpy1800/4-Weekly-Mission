@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import LinkCard from '../components/LinkCard';
-import Modal from '../components/modal/Modal';
-import style from '../styles/LinkList.module.css';
+import LinkCard from '@/components/LinkCard';
+import Modal from '@/components/modal/Modal';
+import style from '@/styles/LinkList.module.css';
 import { folderList } from '@/types/folderDataType.type';
 
 interface link {
@@ -21,6 +21,7 @@ interface linkListProp {
 
 let modalType = '';
 let modalData = {};
+let modalRoot: HTMLDivElement;
 function LinkList({ linkList, folderList }: linkListProp) {
   const [isModal, setIsModal] = useState(false);
   const enableFolderAddModal = (type: string, data = folderList) => {
@@ -29,9 +30,8 @@ function LinkList({ linkList, folderList }: linkListProp) {
     setIsModal(true);
   };
 
-  const modalRoot = document.getElementById('modal-root') as HTMLDivElement;
-
   useEffect(() => {
+    modalRoot = document.getElementById('modal-root') as HTMLDivElement;
     setIsModal(false);
   }, []);
 

@@ -1,10 +1,10 @@
-import logoImg from '../assets/logo.svg';
+import logoImg from '@public/logo.svg';
 import { useCallback, useEffect, useState } from 'react';
-import { getUser } from '../services/api';
-import style from '../styles/Header.module.css';
-import useAsync from '../hooks/useAsync';
-import { useLocation } from 'react-router-dom';
-
+import { getUser } from '@/services/api';
+import style from '@/styles/Header.module.css';
+import useAsync from '@/hooks/useAsync';
+import Image from 'next/image';
+import Link from 'next/link';
 interface userInfo {
   name: string;
   email: string;
@@ -18,7 +18,8 @@ function Header() {
     image_source: '',
   });
   const asyncGetUser = useAsync(getUser);
-  const { pathname } = useLocation();
+  //const { pathname } = useLocation();
+  const pathname = '/folder';
 
   const apiGetUser = useCallback(async () => {
     const { data } = await asyncGetUser();
@@ -35,20 +36,20 @@ function Header() {
     <nav id={style.header} style={pathname === '/folder' ? { position: 'static' } : {}}>
       <div className={style.headerBox}>
         <div className={style.headerLogoBox}>
-          <a href="/">
-            <img src={logoImg} alt="logo" />
-          </a>
+          <Link href="/">
+            <Image width={133} height={24} src={logoImg} alt="logo" />
+          </Link>
         </div>
         <div className={style.loginBox}>
           {Object.keys(userInfo).length ? (
             <div className={style.userInfoBox}>
-              <img className={style.userImg} src={userInfo?.image_source} alt="user-img" />
+              <Image width={28} height={28} className={style.userImg} src={userInfo?.image_source} alt="user-img" />
               <div className={style.userEmail}>{userInfo?.email}</div>
             </div>
           ) : (
-            <a href="/signin">
+            <Link href="/signin">
               <div className={style.loginBtn}>로그인</div>
-            </a>
+            </Link>
           )}
         </div>
       </div>

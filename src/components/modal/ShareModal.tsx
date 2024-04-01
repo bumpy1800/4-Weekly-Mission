@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
-import kakaoShare from '../../assets/kakaoShare.png';
-import facebookShare from '../../assets/facebookShare.png';
-import linkShare from '../../assets/linkShare.png';
-import style from '../../styles/modal/ShareModal.module.css';
+import kakaoShare from '@public/kakaoShare.png';
+import facebookShare from '@public/facebookShare.png';
+import linkShare from '@public/linkShare.png';
+import style from '@/styles/modal/ShareModal.module.css';
 import { modalDataProp } from './types/modal.type';
+import Image from 'next/image';
 
 interface shareModalProp {
   data: modalDataProp;
@@ -45,9 +46,9 @@ function ShareModal({ data }: shareModalProp) {
       <div className={style.modalTitle}>링크 삭제</div>
       <p className={style.modalData}>{name}</p>
       <div className={style.shareBox}>
-        <img src={kakaoShare} alt="kakao" onClick={shareKakao} />
-        <img src={facebookShare} alt="facebook" onClick={shareFacebook} />
-        <img src={linkShare} alt="link" onClick={copyToClipboard} />
+        <Image width={55} height={75} src={kakaoShare} alt="kakao" onClick={shareKakao} />
+        <Image width={55} height={75} src={facebookShare} alt="facebook" onClick={shareFacebook} />
+        <Image width={55} height={75} src={linkShare} alt="link" onClick={copyToClipboard} />
       </div>
     </div>
   );

@@ -1,12 +1,13 @@
 import { MouseEvent, useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import Modal from './modal/Modal';
-import changeNameImg from '../assets/folderChangeName.svg';
-import deleteImg from '../assets/folderDelete.svg';
-import sharedImg from '../assets/folderShared.svg';
-import { classNames, cond } from '../utils/style';
-import style from '../styles/FolderList.module.css';
+import changeNameImg from '@public/folderChangeName.svg';
+import deleteImg from '@public/folderDelete.svg';
+import sharedImg from '@public/folderShared.svg';
+import { classNames, cond } from '@/utils/style';
+import style from '@/styles/FolderList.module.css';
 import { folderDataType } from '@/types/folderDataType.type';
+import Image from 'next/image';
 
 interface folderListProp {
   folderList: folderDataType[];
@@ -79,9 +80,9 @@ function FolderList({ folderList, onClick }: folderListProp) {
           <div className={style.flexBox}>
             {activeFolderInfo.id !== '' && (
               <>
-                <img src={sharedImg} alt="shared" onClick={() => enableFolderAddModal('Share')} />
-                <img src={changeNameImg} alt="change" onClick={() => enableFolderAddModal('Edit')} />
-                <img src={deleteImg} alt="delete" onClick={() => enableFolderAddModal('FolderDelete')} />
+                <Image width={50} height={50} src={sharedImg} alt="shared" onClick={() => enableFolderAddModal('Share')} />
+                <Image width={75} height={50} src={changeNameImg} alt="change" onClick={() => enableFolderAddModal('Edit')} />
+                <Image width={50} height={50} src={deleteImg} alt="delete" onClick={() => enableFolderAddModal('FolderDelete')} />
               </>
             )}
           </div>

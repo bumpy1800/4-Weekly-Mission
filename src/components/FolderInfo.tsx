@@ -1,4 +1,4 @@
-import style from '../styles/FolderInfo.module.css';
+import style from '@/styles/FolderInfo.module.css';
 
 interface folderInfoProp {
   folderInfo: {
