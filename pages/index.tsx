@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
@@ -112,3 +113,28 @@ export default function Home() {
     </>
   )
 }
+=======
+import Link from 'next/link';
+
+const tempStyle = {
+  width: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  gap: '32px',
+  fontSize: '27px',
+};
+
+function Main() {
+  return (
+    <main>
+      <div style={tempStyle}>
+        <Link href="/shared">shared</Link>
+        <Link href="/folder">folder</Link>
+      </div>
+    </main>
+  );
+}
+
+export default Main;
+>>>>>>> part3-김재성-week14-temp
