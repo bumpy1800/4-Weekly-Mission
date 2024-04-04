@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-<<<<<<< HEAD
-  reactStrictMode: true,
-}
-
-module.exports = nextConfig
-=======
   images: {
     remotePatterns: [
       {
@@ -21,4 +15,3 @@ module.exports = nextConfig
 };
 
 module.exports = nextConfig;
->>>>>>> part3-김재성-week14-temp
